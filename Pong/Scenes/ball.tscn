@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://dhxbo21ruiku6"]
+
+[ext_resource type="Script" path="res://Pong/Scenes/ball.gd" id="1_4dvks"]
+[ext_resource type="Texture2D" uid="uid://c032qcyqk3gpb" path="res://Pong/Assets/ball.png" id="2_nc5wr"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5lkp3"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_muj5q"]
+size = Vector2(32, 32)
+
+[node name="Ball" type="RigidBody2D" groups=["Ball"]]
+position = Vector2(0, 150)
+mass = 0.5
+physics_material_override = SubResource("PhysicsMaterial_5lkp3")
+gravity_scale = 0.0
+max_contacts_reported = 1
+contact_monitor = true
+linear_velocity = Vector2(400, 400)
+script = ExtResource("1_4dvks")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_muj5q")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_nc5wr")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

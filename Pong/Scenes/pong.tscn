@@ -1,0 +1,62 @@
+[gd_scene load_steps=6 format=3 uid="uid://dw7agejihyik"]
+
+[ext_resource type="Script" path="res://Pong/Scenes/main.gd" id="1_l75cb"]
+[ext_resource type="PackedScene" uid="uid://dh1k3j5orglnf" path="res://Pong/Scenes/wall.tscn" id="2_c834s"]
+[ext_resource type="PackedScene" uid="uid://dhxbo21ruiku6" path="res://Pong/Scenes/ball.tscn" id="3_3mqu3"]
+[ext_resource type="PackedScene" uid="uid://chqdvcv88d586" path="res://Pong/Scenes/player.tscn" id="4_wacnh"]
+[ext_resource type="PackedScene" uid="uid://caktkkq28mm0g" path="res://Pong/Scenes/goal.tscn" id="5_7q7ys"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_l75cb")
+
+[node name="Camera" type="Camera2D" parent="."]
+
+[node name="TopWall" parent="." instance=ExtResource("2_c834s")]
+position = Vector2(2, -320)
+scale = Vector2(1150, 16.8)
+
+[node name="BottomWall" parent="." instance=ExtResource("2_c834s")]
+position = Vector2(0, 318.765)
+scale = Vector2(1150, 23.56)
+
+[node name="Ball" parent="." instance=ExtResource("3_3mqu3")]
+position = Vector2(0, 0)
+lock_rotation = true
+linear_velocity = Vector2(-100, -100)
+linear_damp_mode = 1
+
+[node name="Player1" parent="." instance=ExtResource("4_wacnh")]
+position = Vector2(-560, 0)
+
+[node name="Player2" parent="." instance=ExtResource("4_wacnh")]
+position = Vector2(560, 0)
+player = 2
+
+[node name="Player1Goal" parent="." instance=ExtResource("5_7q7ys")]
+position = Vector2(-604, 0)
+playerGoal = 1
+
+[node name="Player2Goal" parent="." instance=ExtResource("5_7q7ys")]
+position = Vector2(612, 0)
+playerGoal = 2
+
+[node name="Player1Score" type="Label" parent="."]
+offset_left = -69.0
+offset_top = -310.0
+offset_right = -4.0
+offset_bottom = -230.0
+theme_override_font_sizes/font_size = 56
+text = "0"
+horizontal_alignment = 1
+
+[node name="Player2Score" type="Label" parent="."]
+offset_left = 3.0
+offset_top = -310.0
+offset_right = 68.0
+offset_bottom = -230.0
+theme_override_font_sizes/font_size = 56
+text = "0"
+horizontal_alignment = 1
+
+[connection signal="body_entered" from="Ball" to="Player1Goal" method="_on_ball_body_entered"]
+[connection signal="body_entered" from="Ball" to="Player2Goal" method="_on_ball_body_entered"]

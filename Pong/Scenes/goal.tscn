@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://caktkkq28mm0g"]
+
+[ext_resource type="Script" path="res://Pong/Scenes/goal.gd" id="1_xbc43"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i4qvi"]
+size = Vector2(17, 620)
+
+[node name="Goal" type="StaticBody2D"]
+scale = Vector2(0.24, 1)
+script = ExtResource("1_xbc43")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+scale = Vector2(10, 1.812)
+shape = SubResource("RectangleShape2D_i4qvi")

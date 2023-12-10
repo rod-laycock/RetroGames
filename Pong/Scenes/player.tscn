@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://chqdvcv88d586"]
+
+[ext_resource type="Script" path="res://Pong/Scenes/player.gd" id="1_pgs67"]
+[ext_resource type="Texture2D" uid="uid://bb21np38dym7m" path="res://Pong/Assets/pixel.png" id="2_ltip6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jb7ff"]
+size = Vector2(20, 150)
+
+[node name="Player" type="CharacterBody2D"]
+position = Vector2(268, 210)
+slide_on_ceiling = false
+floor_stop_on_slope = false
+floor_block_on_wall = false
+platform_wall_layers = 3
+script = ExtResource("1_pgs67")
+player = 1
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_jb7ff")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+scale = Vector2(20, 150)
+texture = ExtResource("2_ltip6")
